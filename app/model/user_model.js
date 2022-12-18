@@ -31,4 +31,23 @@ module.exports = {
 
     return parcel_db.ReadDb(query, data);
   },
+
+  //회원 정보 수정
+  async m_UserEdit(id, name, email, phone) {
+    const query =
+      "UPDATE parcel.account SET name = ?, email= ? , phone = ? where id = ?";
+
+    const data = [name, email, phone, id];
+
+    return parcel_db.ReadDb(query, data);
+  },
+
+  //회원 탈퇴
+  async m_UserDel(id) {
+    const query = "";
+
+    const data = [id];
+
+    return parcel_db.ReadDb(query, data);
+  },
 };

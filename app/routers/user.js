@@ -150,6 +150,8 @@ router.get("/logout", user_controller.c_UserLogout);
  *                  type: boolean
  *                err:
  *                  type: string
+ *                message:
+ *                  type: string
  *                id:
  *                  type: string
  *                password:
@@ -164,4 +166,90 @@ router.get("/logout", user_controller.c_UserLogout);
 
 router.post("/search", user_controller.c_UserSearch);
 
+/** 회원정보조회
+ * @swagger
+ *
+ * /api/user/edit:
+ *  post:
+ *    summary: "회원정보수정"
+ *    description: "로그인 후 진행"
+ *    tags: [user]
+ *    requestBody:
+ *      description: 로그인된 계정의 비밀번호와 수정값을 입력.
+ *      required: false
+ *      content:
+ *        application/x-www-form-urlencoded:
+ *          schema:
+ *            type: object
+ *            properties:
+ *              password:
+ *                type: string
+ *                description: "패스워드"
+ *              name:
+ *                type: string
+ *              email:
+ *                type: string
+ *              phone:
+ *                type: string
+ *
+ *
+ *    responses:
+ *      "200":
+ *        description: 등록 성공시 sueccess = true 실패시 sueccess = false 및 회원 정보
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                sueccess:
+ *                  type: boolean
+ *                err:
+ *                  type: string
+ *                message:
+ *                  type: string
+ */
+
+router.post("/edit", user_controller.c_UserEdit);
+
+/** 회원탈퇴
+ * @swagger
+ *
+ * /api/user/login:
+ *  post:
+ *    summary: "회원 탈퇴"
+ *    description: "회원 정보를 삭제한다."
+ *    tags: [user]
+ *    requestBody:
+ *      description: 회원탈퇴.
+ *      required: false
+ *      content:
+ *        application/x-www-form-urlencoded:
+ *          schema:
+ *            type: object
+ *            properties:
+ *              id:
+ *                type: string
+ *                description: "아이디"
+ *              password:
+ *                type: string
+ *                description: "패스워드"
+ *
+ *
+ *    responses:
+ *      "200":
+ *        description: 등록 성공시 sueccess = true 실패시 sueccess = false 및 메세지
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                sueccess:
+ *                  type: boolean
+ *                err:
+ *                  type: string
+ *                message:
+ *                  type: string
+ */
+
+router.post("/quit", user_controller.c_UserDel);
 module.exports = router;
